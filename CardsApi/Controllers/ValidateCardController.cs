@@ -26,12 +26,20 @@ namespace CardsApi.Controllers
         }
 
 
-        [HttpPost("{id}")]
-        public async Task<IActionResult> ValidateCard(string id)
+        [HttpPost]
+        public async Task<ActionResult<Card>> ValidateCard(Card card)
         {
-            var result = await _context.Cards.AnyAsync(e => e.CardId.Contains(id));
+            //var result = await _context.Cards.AnyAsync(e => e.CardId.Contains(card.CardId));
 
-            return Ok(result);
+            var res = await _context.Cards
+                   .Where(c => c.CustomerId == card.CustomerId)
+                   .Where(c => c.CardId == card.CardId)
+                   .Where(c => c.Token == card.Token)
+                   .Where(c => c.CVV == card.CVV)
+                   .AnyAsync();
+                   
+
+            return Ok(res);
 
         }
     }
