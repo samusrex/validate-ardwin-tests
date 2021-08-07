@@ -26,7 +26,11 @@ namespace CardsApi.Controllers
         }
 
 
+<<<<<<< HEAD
         [HttpPost]
+=======
+         [HttpPost]
+>>>>>>> df5259d60f88ee8d7b84e7f9e4f78602675f19a2
         public async Task<ActionResult<Card>> ValidateCard(Card card)
         {
             //var result = await _context.Cards.AnyAsync(e => e.CardId.Contains(card.CardId));
